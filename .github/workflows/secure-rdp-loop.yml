@@ -89,7 +89,7 @@ jobs:
           # 🌐 Silent Tailscale Engine Setup
           $tsUrl = "https://pkgs.tailscale.com/stable/tailscale-setup-1.82.0-amd64.msi"
           Invoke-WebRequest -Uri $tsUrl -OutFile "$env:TEMP\ts.msi"
-          Start-Process msiexec.exe -ArgumentList "/i", ""$env:TEMP\ts.msi"", "/quiet", "/norestart" -Wait
+          Start-Process msiexec.exe -ArgumentList "/i", ""$env:TEMP\ts.msi", "/quiet", "/norestart" -Wait
           Remove-Item "$env:TEMP\ts.msi" -Force
 
           & "$env:ProgramFiles\Tailscale\tailscale.exe" up --authkey=${{ secrets.TAILSCALE_AUTH_KEY }} --hostname=gh-runner-toolboxlap-${{ github.run_number }} --accept-routes
